@@ -1,0 +1,84 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.player {
+	margin: 20px auto;
+}
+
+.reader-img {
+	width: 100%;
+	height: auto;
+	max-width:225px;
+}
+
+.reader-name {
+	padding: 20px 0px;
+}
+
+.chapter-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	max-width: 400px;
+	margin: 0px auto;
+}
+
+.list-icon {
+	margin:5px 20px 0px 0px;
+	align-self: center;
+	width: 30px;
+	height: auto;
+}
+
+
+.chapter-name{
+	color: #296bbf;
+	align-self: center;
+	margin:0 10px 0 0;
+}
+
+.green-audio-player .slider .gap-progress .pin {
+	background-color: #296bbf !important;
+}
+
+.book-menu {
+	min-width: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+}
+
+.book-menu .menu-content {
+	width: 100%;
+	max-width: 300px;
+	margin: 0 auto;
+	padding: 30px;
+	
+	p {
+		margin-left:16px;
+	}
+}
+
+.nav-link {
+
+	display: flex;
+	border-bottom: 1px solid #ebebeb;
+	
+	&.active {
+		font-weight: 700;
+	}
+	
+	svg {
+	    align-self: center;
+	    margin-left: auto;
+	}
+}
