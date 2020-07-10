@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        
+        <nav-menu></nav-menu>
 
         <main class="py-4">
             @yield('content')
@@ -33,3 +33,5 @@
     </div>
 </body>
 </html>
+
+<?php /* once live, generate passport keys - https://laravel.com/docs/5.7/passport#consuming-your-api-with-javascript */ ?>

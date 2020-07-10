@@ -47,7 +47,7 @@ class ChapterController extends Controller
      */
     public function show($book, $chapter)
     {
-		$thisBook = Book::firstWhere('slug', $book);
+        $thisBook = Book::firstWhere('slug', $book);
 		$selectedChapter = $thisBook->chapters->where('number', $chapter)->first();
 		
 		$books = Book::all();
@@ -88,4 +88,26 @@ class ChapterController extends Controller
     {
         //
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function listNav()
+    {
+        $books = Book::all();
+        $navlist = [];
+        $name = $slug = $chaptercount = '';
+
+        foreach( $books as $book){
+            $name = $book->name;
+            $slug = $book->slug;
+            $chaptercount = $book->chapters->count();
+            array_push($navlist, ["name" => $name, "slug" => $slug, "count" => $chaptercount]);
+        }
+
+        return $navlist;
+    }    
 }
