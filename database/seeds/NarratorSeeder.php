@@ -62,16 +62,6 @@ class NarratorSeeder extends Seeder
               'narratorImageName' => 'NoemiTonon',
               'audioFileName' => 'Intro5',
             ),
-            5 => 
-            array (
-              'uuid' => 0,
-              'bookID' => 2,
-              'book' => '1 Nefi',
-              'chapter' => 1,
-              'narrator' => 'Giacomo Armillei',
-              'narratorImageName' => 'GiacomoArmillei',
-              'audioFileName' => '1Nefi1',
-            ),
             6 => 
             array (
               'uuid' => 6,

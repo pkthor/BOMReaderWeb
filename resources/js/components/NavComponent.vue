@@ -11,12 +11,14 @@
                     </li>
                 </ul>
                 <!-- Chapter Submenus -->
-                <ul v-for="(chapter, key) in chapters" class="menu__level" :key="key" v-bind:class="{ active: submenu == key }">
-                    <li class="back__item"><a class="menu__link" href="#" v-on:click="goBack()"> <i class="fas fa-chevron-left"></i>&nbsp;Libri</a>
-                    <li v-for="name, key in chapter.chapters" class="menu__item">
-                        <a v-if="!hasNumber(name.display_name)" class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ name.display_name }}</a>
-                        <a v-else class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ (key + 1) }}</a>
-                    </li>
+                <ul v-for="(chapter, key) in chapters" class="menu__level" :key="key" v-bind:class="{ active: submenu == key  }">
+                    <div v-bind:class="{ 'number-chapters': hasNumber(chapter.chapters[0].display_name) }">
+                        <li class="back__item"><a class="back__link" href="#" v-on:click="goBack()"> <i class="fas fa-chevron-left back"></i>&nbsp;Libri</a>
+                        <li v-for="name, key in chapter.chapters" class="menu__item">
+                            <a v-if="!hasNumber(name.display_name)" class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ name.display_name }}</a>
+                            <a v-else class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ (key + 1) }}</a>
+                        </li>
+                    </div>
                 </ul>
             </div>
         </nav>
@@ -37,7 +39,6 @@
             axios.get('/api/nav-chapters')
                 .then(response => {
                     this.chapters = response.data;
-                    console.log(response.data);
                 });
         },
         methods: {

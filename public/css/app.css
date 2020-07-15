@@ -17274,8 +17274,9 @@ h1 {
 }
 
 .reader-info {
+  max-width: 400px;
   border-bottom: 1px solid #e0e8f1;
-  margin-bottom: 20px;
+  margin: 0px auto 20px;
 }
 
 .reader-img {
@@ -17359,6 +17360,13 @@ a#book-name:focus {
 .nav-link svg {
   align-self: center;
   margin-left: auto;
+}
+
+footer {
+  max-width: 400px;
+  margin: 40px auto 0;
+  text-align: center;
+  padding: 0 15px;
 }
 
 /* Menu styles */
@@ -17465,8 +17473,8 @@ li.back__item {
   width: 100%;
 }
 
-li.back__item a.menu__link i {
-  margin: 0;
+li.back__item a.back__link {
+  text-align: left;
 }
 
 .menu__level--current {
@@ -17480,7 +17488,8 @@ li.back__item a.menu__link i {
   border-bottom: 1px solid #eaeaff;
 }
 
-a.menu__link {
+a.menu__link,
+a.back__link {
   width: 100%;
   font-weight: 400;
   font-size: 16px;
@@ -17494,12 +17503,52 @@ a.menu__link {
   cursor: pointer;
 }
 
-a.menu__link i {
+a.menu__link i,
+a.back__link i {
   margin: 0 0 0 auto;
   font-size: 11px;
 }
 
+a.menu__link i.back,
+a.back__link i.back {
+  margin: 0;
+}
+
+div.number-chapters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+div.number-chapters li {
+  flex-basis: 0;
+  border-bottom: 0;
+  margin: 0 10px 10px;
+}
+
+div.number-chapters li.back__item {
+  flex-basis: 100%;
+}
+
+div.number-chapters li.back__item a {
+  padding-left: 0;
+}
+
+div.number-chapters a.menu__link {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  border-radius: 50%;
+  border: 1px solid;
+  margin-bottom: 15px;
+}
+
 .menu__link:hover,
+.back__link:hover,
 .menu__link[data-submenu]:hover::after,
 .action--close:hover {
   color: #5c5edc;

@@ -17,6 +17,6 @@ Route::get('/{book}/{chapter}', 'ChapterController@show');
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::redirect('/', '/introduzione/1')->name('home');
 
 Route::get('/chapters/{uuid}/stream', 'ChapterController@stream')->name('chapters.stream');

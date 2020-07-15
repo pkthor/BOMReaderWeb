@@ -33,8 +33,10 @@ h1 {
 }
 
 .reader-info {
+	max-width: 400px;
 	border-bottom: 1px solid #e0e8f1;
-	margin-bottom: 20px;
+	margin: 0px auto 20px;
+	
 }
 
 .reader-img {
@@ -120,6 +122,13 @@ a#book-name {
 	    align-self: center;
 	    margin-left: auto;
 	}
+}
+
+footer {
+	max-width: 400px;
+	margin: 40px auto 0;
+	text-align: center;
+	padding: 0 15px;
 }
 
 

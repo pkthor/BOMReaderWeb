@@ -1966,6 +1966,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1980,7 +1982,6 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/nav-chapters').then(function (response) {
       _this.chapters = response.data;
-      console.log(response.data);
     });
   },
   methods: {
@@ -37797,51 +37798,65 @@ var render = function() {
                   class: { active: _vm.submenu == key }
                 },
                 [
-                  _c("li", { staticClass: "back__item" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "menu__link",
-                        attrs: { href: "#" },
-                        on: {
-                          click: function($event) {
-                            return _vm.goBack()
-                          }
-                        }
-                      },
-                      [
-                        _c("i", { staticClass: "fas fa-chevron-left" }),
-                        _vm._v(" Libri")
-                      ]
-                    )
-                  ]),
-                  _vm._l(chapter.chapters, function(name, key) {
-                    return _c("li", { staticClass: "menu__item" }, [
-                      !_vm.hasNumber(name.display_name)
-                        ? _c(
-                            "a",
-                            {
-                              staticClass: "menu__link",
-                              attrs: {
-                                href: "/" + chapter.slug + "/" + (key + 1)
+                  _c(
+                    "div",
+                    {
+                      class: {
+                        "number-chapters": _vm.hasNumber(
+                          chapter.chapters[0].display_name
+                        )
+                      }
+                    },
+                    [
+                      _c("li", { staticClass: "back__item" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "back__link",
+                            attrs: { href: "#" },
+                            on: {
+                              click: function($event) {
+                                return _vm.goBack()
                               }
-                            },
-                            [_vm._v(_vm._s(name.display_name))]
-                          )
-                        : _c(
-                            "a",
-                            {
-                              staticClass: "menu__link",
-                              attrs: {
-                                href: "/" + chapter.slug + "/" + (key + 1)
-                              }
-                            },
-                            [_vm._v(_vm._s(key + 1))]
-                          )
-                    ])
-                  })
-                ],
-                2
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "fas fa-chevron-left back"
+                            }),
+                            _vm._v(" Libri")
+                          ]
+                        )
+                      ]),
+                      _vm._l(chapter.chapters, function(name, key) {
+                        return _c("li", { staticClass: "menu__item" }, [
+                          !_vm.hasNumber(name.display_name)
+                            ? _c(
+                                "a",
+                                {
+                                  staticClass: "menu__link",
+                                  attrs: {
+                                    href: "/" + chapter.slug + "/" + (key + 1)
+                                  }
+                                },
+                                [_vm._v(_vm._s(name.display_name))]
+                              )
+                            : _c(
+                                "a",
+                                {
+                                  staticClass: "menu__link",
+                                  attrs: {
+                                    href: "/" + chapter.slug + "/" + (key + 1)
+                                  }
+                                },
+                                [_vm._v(_vm._s(key + 1))]
+                              )
+                        ])
+                      })
+                    ],
+                    2
+                  )
+                ]
               )
             })
           ],
