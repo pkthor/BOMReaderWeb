@@ -1,19 +1,26 @@
 <template>
-    <nav id="ml-menu" class="menu hidden">
-            <button class="action action--close" aria-label="Close Menu"><i class="fas fa-times"></i></button>
+    <div>
+        <button class="hamburger" v-on:click="showMenu()"><i class="fas fa-bars"></i></button>
+        <nav id="ml-menu" class="menu" v-bind:class="{ 'menu--open': menuOpen }">
+            <button class="action action--close" v-on:click="hideMenu()" aria-label="Close Menu"><i class="fas fa-times"></i></button>
             <div class="menu__wrap">
                 <ul class="menu-list" v-bind:class="{ inactive: bookSelected }">
                     <li v-for="(book, key, index) in chapters" class="menu__item" :slug="book.slug" :key="key">
-                        <a class="menu__link" v-on:click="setSubmenu(key)" href="#">{{book.name}} <i class="fas fa-chevron-right"></i></a>
+                        <a v-if="book.count > 1" class="menu__link" v-on:click="setSubmenu(key, $event)" href="">{{book.name}} <i class="fas fa-chevron-right"></i></a>
+                        <a v-else class="menu__link" :href="'/' + book.slug + '/1'">{{book.name}} <i class="fas fa-chevron-right"></i></a>
                     </li>
                 </ul>
                 <!-- Chapter Submenus -->
-                <ul v-for="(book, key) in chapters" class="menu__level" :key="key" v-bind:class="{ active: submenu == key }">
-                    <li class="back__item"><a class="menu__link" href="#" v-on:click="goBack()"> <i class="fas fa-chevron-left"></i> Back</a>
-                    <li v-for="n in book.count" class="menu__item"><a class="menu__link" :href="'/' + book.slug + '/' + n">{{ n }}</a></li>
+                <ul v-for="(chapter, key) in chapters" class="menu__level" :key="key" v-bind:class="{ active: submenu == key }">
+                    <li class="back__item"><a class="menu__link" href="#" v-on:click="goBack()"> <i class="fas fa-chevron-left"></i>&nbsp;Libri</a>
+                    <li v-for="name, key in chapter.chapters" class="menu__item">
+                        <a v-if="!hasNumber(name.display_name)" class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ name.display_name }}</a>
+                        <a v-else class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ (key + 1) }}</a>
+                    </li>
                 </ul>
             </div>
         </nav>
+    </div>
 </template>
 
 <script>
@@ -23,26 +30,35 @@
                 chapters: '',
                 submenu: '-1',
                 bookSelected: false,
+                menuOpen: false,
             }
         },
         mounted() {
-            console.log('Component mounted.')
             axios.get('/api/nav-chapters')
                 .then(response => {
                     this.chapters = response.data;
+                    console.log(response.data);
                 });
         },
         methods: {
-            setSubmenu: function (index, chcount) {
-                console.log( "index: " + index );
+            setSubmenu: function (index, event) {
+                event.preventDefault();
                 this.submenu = index; 
                 this.bookSelected = true;
-                console.log("Chapters index count: " + this.chapters[index].count);
-                console.log(this.chapters);
             },
             goBack: function () {
                 this.submenu = '-1';
                 this.bookSelected = false;
+            },
+            hideMenu: function() {
+                this.menuOpen = false;
+                this.goBack();
+            },
+            showMenu: function() {
+                this.menuOpen = true;
+            },
+            hasNumber: function(string) {
+                return /\d/.test(string);
             }
         }
     }

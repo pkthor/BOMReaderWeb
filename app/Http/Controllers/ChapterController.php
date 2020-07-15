@@ -99,13 +99,16 @@ class ChapterController extends Controller
     {
         $books = Book::all();
         $navlist = [];
-        $name = $slug = $chaptercount = '';
+        $name = $slug = $chaptercount = $chapters = '';
 
         foreach( $books as $book){
             $name = $book->name;
             $slug = $book->slug;
             $chaptercount = $book->chapters->count();
-            array_push($navlist, ["name" => $name, "slug" => $slug, "count" => $chaptercount]);
+            
+            $chapters = $book->chapters;
+            
+            array_push($navlist, ["name" => $name, "slug" => $slug, "count" => $chaptercount, "chapters" => $chapters]);
         }
 
         return $navlist;

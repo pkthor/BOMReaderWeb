@@ -1,3 +1,6 @@
+// Normalize.css
+@import '~normalize.css/normalize.css';
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -11,18 +14,37 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.app {
+	width: 100%;
+}
+
+main {
+	padding: 40px 15px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
 
 .player {
 	margin: 20px auto;
+	max-width: 100%;
+}
+
+.reader-info {
+	border-bottom: 1px solid #e0e8f1;
+	margin-bottom: 20px;
 }
 
 .reader-img {
 	width: 100%;
 	height: auto;
-	max-width:225px;
+	max-width:180px;
 }
 
 .reader-name {
+	margin: 0px;
 	padding: 20px 0px;
 }
 
@@ -34,6 +56,14 @@
 	margin: 0px auto;
 }
 
+a#book-name {
+	color: #212529;
+
+	&:focus {
+		text-decoration: none;
+	}
+}
+
 .list-icon {
 	margin:5px 20px 0px 0px;
 	align-self: center;
@@ -42,11 +72,15 @@
 }
 
 
-.chapter-name{
-	color: #296bbf;
+.chapter-name {
 	align-self: center;
-	margin:0 10px 0 0;
+	margin:0 0 40px 0;
 	font-size: 1.5rem;
+
+	a {
+		margin-bottom: 10px;
+		display: inline-block;
+	}
 }
 
 .green-audio-player .slider .gap-progress .pin {

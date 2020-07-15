@@ -1959,33 +1959,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       chapters: '',
       submenu: '-1',
-      bookSelected: false
+      bookSelected: false,
+      menuOpen: false
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    console.log('Component mounted.');
     axios.get('/api/nav-chapters').then(function (response) {
       _this.chapters = response.data;
+      console.log(response.data);
     });
   },
   methods: {
-    setSubmenu: function setSubmenu(index, chcount) {
-      console.log("index: " + index);
+    setSubmenu: function setSubmenu(index, event) {
+      event.preventDefault();
       this.submenu = index;
       this.bookSelected = true;
-      console.log("Chapters index count: " + this.chapters[index].count);
-      console.log(this.chapters);
     },
     goBack: function goBack() {
       this.submenu = '-1';
       this.bookSelected = false;
+    },
+    hideMenu: function hideMenu() {
+      this.menuOpen = false;
+      this.goBack();
+    },
+    showMenu: function showMenu() {
+      this.menuOpen = true;
+    },
+    hasNumber: function hasNumber(string) {
+      return /\d/.test(string);
     }
   }
 });
@@ -37683,110 +37699,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("nav", { staticClass: "menu hidden", attrs: { id: "ml-menu" } }, [
-    _vm._m(0),
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "hamburger",
+        on: {
+          click: function($event) {
+            return _vm.showMenu()
+          }
+        }
+      },
+      [_c("i", { staticClass: "fas fa-bars" })]
+    ),
     _vm._v(" "),
     _c(
-      "div",
-      { staticClass: "menu__wrap" },
+      "nav",
+      {
+        staticClass: "menu",
+        class: { "menu--open": _vm.menuOpen },
+        attrs: { id: "ml-menu" }
+      },
       [
         _c(
-          "ul",
-          { staticClass: "menu-list", class: { inactive: _vm.bookSelected } },
-          _vm._l(_vm.chapters, function(book, key, index) {
-            return _c(
-              "li",
-              {
-                key: key,
-                staticClass: "menu__item",
-                attrs: { slug: book.slug }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "menu__link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.setSubmenu(key)
-                      }
-                    }
-                  },
-                  [
-                    _vm._v(_vm._s(book.name) + " "),
-                    _c("i", { staticClass: "fas fa-chevron-right" })
-                  ]
-                )
-              ]
-            )
-          }),
-          0
+          "button",
+          {
+            staticClass: "action action--close",
+            attrs: { "aria-label": "Close Menu" },
+            on: {
+              click: function($event) {
+                return _vm.hideMenu()
+              }
+            }
+          },
+          [_c("i", { staticClass: "fas fa-times" })]
         ),
         _vm._v(" "),
-        _vm._l(_vm.chapters, function(book, key) {
-          return _c(
-            "ul",
-            {
-              key: key,
-              staticClass: "menu__level",
-              class: { active: _vm.submenu == key }
-            },
-            [
-              _c("li", { staticClass: "back__item" }, [
-                _c(
-                  "a",
+        _c(
+          "div",
+          { staticClass: "menu__wrap" },
+          [
+            _c(
+              "ul",
+              {
+                staticClass: "menu-list",
+                class: { inactive: _vm.bookSelected }
+              },
+              _vm._l(_vm.chapters, function(book, key, index) {
+                return _c(
+                  "li",
                   {
-                    staticClass: "menu__link",
-                    attrs: { href: "#" },
-                    on: {
-                      click: function($event) {
-                        return _vm.goBack()
-                      }
-                    }
+                    key: key,
+                    staticClass: "menu__item",
+                    attrs: { slug: book.slug }
                   },
                   [
-                    _c("i", { staticClass: "fas fa-chevron-left" }),
-                    _vm._v(" Back")
+                    book.count > 1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "menu__link",
+                            attrs: { href: "" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setSubmenu(key, $event)
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(_vm._s(book.name) + " "),
+                            _c("i", { staticClass: "fas fa-chevron-right" })
+                          ]
+                        )
+                      : _c(
+                          "a",
+                          {
+                            staticClass: "menu__link",
+                            attrs: { href: "/" + book.slug + "/1" }
+                          },
+                          [
+                            _vm._v(_vm._s(book.name) + " "),
+                            _c("i", { staticClass: "fas fa-chevron-right" })
+                          ]
+                        )
                   ]
                 )
-              ]),
-              _vm._l(book.count, function(n) {
-                return _c("li", { staticClass: "menu__item" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "menu__link",
-                      attrs: { href: "/" + book.slug + "/" + n }
-                    },
-                    [_vm._v(_vm._s(n))]
-                  )
-                ])
-              })
-            ],
-            2
-          )
-        })
-      ],
-      2
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.chapters, function(chapter, key) {
+              return _c(
+                "ul",
+                {
+                  key: key,
+                  staticClass: "menu__level",
+                  class: { active: _vm.submenu == key }
+                },
+                [
+                  _c("li", { staticClass: "back__item" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "menu__link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            return _vm.goBack()
+                          }
+                        }
+                      },
+                      [
+                        _c("i", { staticClass: "fas fa-chevron-left" }),
+                        _vm._v(" Libri")
+                      ]
+                    )
+                  ]),
+                  _vm._l(chapter.chapters, function(name, key) {
+                    return _c("li", { staticClass: "menu__item" }, [
+                      !_vm.hasNumber(name.display_name)
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "menu__link",
+                              attrs: {
+                                href: "/" + chapter.slug + "/" + (key + 1)
+                              }
+                            },
+                            [_vm._v(_vm._s(name.display_name))]
+                          )
+                        : _c(
+                            "a",
+                            {
+                              staticClass: "menu__link",
+                              attrs: {
+                                href: "/" + chapter.slug + "/" + (key + 1)
+                              }
+                            },
+                            [_vm._v(_vm._s(key + 1))]
+                          )
+                    ])
+                  })
+                ],
+                2
+              )
+            })
+          ],
+          2
+        )
+      ]
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "action action--close",
-        attrs: { "aria-label": "Close Menu" }
-      },
-      [_c("i", { staticClass: "fas fa-times" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49987,7 +50052,11 @@ var app = new Vue({
   el: '#app'
 });
 new GreenAudioPlayer('.player');
-$(document).ready(function () {});
+$(document).ready(function () {
+  $('#book-name').click(function (e) {
+    e.preventDefault();
+  });
+});
 
 /***/ }),
 
@@ -50192,8 +50261,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/james/Sites/my-projects/BOMReaderWeb/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/james/Sites/my-projects/BOMReaderWeb/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/pkthor/Documents/WebProjects/bom-reader/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/pkthor/Documents/WebProjects/bom-reader/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

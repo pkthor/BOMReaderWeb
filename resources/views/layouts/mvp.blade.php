@@ -27,7 +27,8 @@
     <div id="app">
         <nav-menu></nav-menu>
 
-        <main class="py-4">
+        <main>
+            <h1>Il Libro de Mormon</h1>
             @yield('content')
         </main>
     </div>
