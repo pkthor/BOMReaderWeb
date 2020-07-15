@@ -29,7 +29,9 @@ class BooksTableSeeder extends Seeder
 			['id' => 14, 'name' => 'Mormon', 'slug' => 'mormon'],
 			['id' => 15, 'name' => 'Ether', 'slug' => 'ether'],
 			['id' => 16, 'name' => 'Moroni', 'slug' => 'moroni']
-	    ]);
+		]);
+		
+		// Insert Chapters Table
 			
 		DB::table('chapters')->insertOrIgnore([
 			['number' => 1, 'display_name' => 'Frontespizio del Libro di Mormon', 'book_id' => 1],
@@ -54,6 +56,32 @@ class BooksTableSeeder extends Seeder
 		}	
 		
 		DB::table('chapters')->insertOrIgnore($chapters);
+
+		// Insert Media Table
+
+		DB::table('media')->insertOrIgnore([
+			['filename' => 'intro1.mp3', 'uuid' => sha1('Frontespizio del Libro di Mormon' . microtime()), 'chapter_id' => 1],
+			['filename' => 'intro2.mp3', 'uuid' => sha1('Introduzione' . microtime()), 'chapter_id' => 2],
+			['filename' => 'intro3.mp3', 'uuid' => sha1('La testimonianza di tre testimoni' . microtime()), 'chapter_id' => 3],
+			['filename' => 'intro4.mp3', 'uuid' => sha1('La testimonianza di otto testimoni' . microtime()), 'chapter_id' => 4],
+			['filename' => 'intro5.mp3', 'uuid' => sha1('La testimonianza del profeta Joseph Smith' . microtime()), 'chapter_id' => 5],
+		]);
+
+		$media = [];
+		$i = 6;
+
+		foreach($chapters as $chapter) { 
+			
+			//create array then put in table insert command
+			$filename = str_replace(' ', '', $chapter['display_name']);
+
+			array_push($media, ['filename' => $filename . ".mp3", 'uuid' => sha1($filename . microtime()), 'chapter_id' => $i]);
+
+			$i++;
+
+		}
+
+		DB::table('media')->insertOrIgnore($media);
 			
     }
 }

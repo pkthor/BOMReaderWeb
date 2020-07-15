@@ -12,7 +12,7 @@
 	</p>
 	<div class="player text-center">
 		<audio>
-		<source src="{{ asset('audio/Mosia3.mp3') }}" type=audio/mpeg>
+		<source src="/chapters/{{ $chapterMedia->uuid }}/stream" type=audio/mpeg>
 			Unsupported browser
 		</audio>
 	</div>

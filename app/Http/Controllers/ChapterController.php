@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 use App\Book;
 use App\Chapter;
+use App\Media;
 
 class ChapterController extends Controller
 {
@@ -48,11 +50,12 @@ class ChapterController extends Controller
     public function show($book, $chapter)
     {
         $thisBook = Book::firstWhere('slug', $book);
-		$selectedChapter = $thisBook->chapters->where('number', $chapter)->first();
+        $selectedChapter = $thisBook->chapters->where('number', $chapter)->first();
+        $chapterMedia = $selectedChapter->media;
 		
 		$books = Book::all();
 		
-        return view('chapter', compact('thisBook', 'selectedChapter', 'books'));
+        return view('chapter', compact('thisBook', 'selectedChapter', 'books', 'chapterMedia'));
     }
 
     /**
@@ -113,4 +116,19 @@ class ChapterController extends Controller
 
         return $navlist;
     }    
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function stream($uuid) {
+        $media = Media::where('uuid', $uuid)->firstOrFail();
+        $pathToFile = storage_path('app/media/' . $media->filename);
+        return response()->file($pathToFile);
+    }
+
 }
+
+

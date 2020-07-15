@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/{book}/{chapter}', 'ChapterController@show');
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/chapters/{uuid}/stream', 'ChapterController@stream')->name('chapters.stream');

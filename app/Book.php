@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     /**
-     * Get the chapters for the blog post.
+     * Get the chapters for the book.
      */
     public function chapters()
     {

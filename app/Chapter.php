@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Chapter extends Model
 {
     /**
-     * Get the user that owns the phone.
+     * Get the book that this belongs to.
      */
-    public function user()
+    public function book()
     {
         return $this->belongsTo('App\Book');
+    }
+
+    /**
+     * Get the media for the chapter.
+     */
+    public function media()
+    {
+        return $this->hasOne('App\Media');
     }
 }
