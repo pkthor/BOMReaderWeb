@@ -21,4 +21,12 @@ class Chapter extends Model
     {
         return $this->hasOne('App\Media');
     }
+
+    /**
+     * Get the narrator for the chapter.
+     */
+    public function narrator()
+    {
+        return $this->hasOne('App\Narrator');
+    }
 }

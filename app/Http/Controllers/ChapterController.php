@@ -52,10 +52,11 @@ class ChapterController extends Controller
         $thisBook = Book::firstWhere('slug', $book);
         $selectedChapter = $thisBook->chapters->where('number', $chapter)->first();
         $chapterMedia = $selectedChapter->media;
+        $narrator = $selectedChapter->narrator;
 		
 		$books = Book::all();
 		
-        return view('chapter', compact('thisBook', 'selectedChapter', 'books', 'chapterMedia'));
+        return view('chapter', compact('thisBook', 'selectedChapter', 'books', 'chapterMedia', 'narrator'));
     }
 
     /**

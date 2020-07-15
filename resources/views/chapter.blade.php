@@ -3,8 +3,8 @@
 @section('content')
 <div class="main-content">
 	<div class="reader-info">
-		<img src="{{ asset( 'img/DanieleDicarolo.jpg ') }}" alt="" width="300" height="300"  class="reader-img rounded-circle mx-auto d-block"/>
-		<p class="reader-name text-center h3">Daniele Dicarolo</p>
+		<img src="/img/photos/{{ $narrator->photo }}" alt="" width="300" height="300"  class="reader-img rounded-circle mx-auto d-block"/>
+		<p class="reader-name text-center h3">{{ $narrator->name }}</p>
 	</div>
 	<p class="text-center h2 chapter-name">
 		<a href="" id="book-name">{{ $thisBook->name }}</a><br>

@@ -17407,7 +17407,7 @@ a#book-name:focus {
   transform: translate3d(0, 0, 0);
   opacity: 1;
   z-index: 1;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .menu__wrap {

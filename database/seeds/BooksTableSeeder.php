@@ -82,6 +82,7 @@ class BooksTableSeeder extends Seeder
 		}
 
 		DB::table('media')->insertOrIgnore($media);
+		
 			
     }
 }

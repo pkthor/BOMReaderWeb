@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Media extends Model
+class Narrator extends Model
 {
     /**
      * Get the chapter that this belongs to.
