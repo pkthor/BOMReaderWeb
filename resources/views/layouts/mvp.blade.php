@@ -20,12 +20,13 @@
     <link rel="icon" sizes="192x192" href="/img/icon192.png">
 
     <meta property="og:title" 
-  content="Il Libro di Mormon Alta Voce" />
+  content="Libro di Mormon Alta Voce: @yield('title-info')" />
+  <meta property="og:description" content="Il Libro di Mormon letto dai membri italiani della Chiesa di Gesù Cristo dei Santi degli Ultimi Giorni." />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Il Libro di Mormon Alta Voce') }}</title>
+    <title>Libro di Mormon Alta Voce: @yield('title-info')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -33,10 +34,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet"> 
-	
-	<!--Audio Player-->
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
-	<script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
 
 
 
@@ -48,14 +45,14 @@
         <nav-menu></nav-menu>
 
         <main>
-            <h1>Il Libro di Mormon</h1>
+            <h1>Libro di Mormon</h1>
             @yield('content')
         </main>
     </div>
     <footer>
         <small>
-            <p>Made with love by Italian members of<br>The Church of Jesus Christ of Latter-day&nbsp;Saints.</p>
-            <p>This is not an official, sponsored product of the Church, rather it is created by Church members in an effort to provide an audio version of the Book of Mormon in&nbsp;Italian.</p>
+            <p>Realizzato con amore da membri italiani della<br>Chiesa di Gesù Cristo dei Santi degli Ultimi&nbsp;Giorni.</p>
+            <p>Questo non è un prodotto ufficiale sponsorizzato della Chiesa, ma è stato creato dai membri della Chiesa nel tentativo di fornire una versione audio del Libro di Mormon in&nbsp;italiano</p>
         </small>
     </footer>
 </body>

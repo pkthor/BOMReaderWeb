@@ -8,6 +8,23 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import GreenAudioPlayer from "green-audio-player/dist/js/green-audio-player";
+
+class GreenAudioPlayerFix extends GreenAudioPlayer {
+  constructor(player, options) {
+    super(player, options);
+    delete this.isDevice;
+    this.isDevice =
+      (/ipad|iphone|ipod|android/i.test(
+        window.navigator.userAgent.toLowerCase()
+      ) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) &&
+      !window.MSStream;
+    this.overcomeIosLimitations();
+  }
+}
+
+export default GreenAudioPlayerFix;
 
 /**
  * The following block of code may be used to automatically register your
@@ -33,10 +50,14 @@ const app = new Vue({
     el: '#app',
 });
 
-new GreenAudioPlayer('.player');
+new GreenAudioPlayerFix('.player');
 
-$(document).ready(function() {
-    $('#book-name').click(function(e){
-        e.preventDefault();
-    });
+document.getElementById('book-name').addEventListener('click', function(e){
+   e.preventDefault();
 });
+
+document.querySelector(".menu__wrap").addEventListener("click", function(e) {
+    if (e.target.classList.contains('back__link')){
+        e.preventDefault();
+    }
+  });

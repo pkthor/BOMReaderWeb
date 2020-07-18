@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "green-audio-player": "^1.1.2",
         "normalize.css": "^8.0.1"
     }
 }

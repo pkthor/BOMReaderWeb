@@ -50,13 +50,19 @@ class ChapterController extends Controller
     public function show($book, $chapter)
     {
         $thisBook = Book::firstWhere('slug', $book);
-        $selectedChapter = $thisBook->chapters->where('number', $chapter)->first();
+        $selectedChapter = $thisBook->chapters->where('slug', $chapter)->first();
         $chapterMedia = $selectedChapter->media;
         $narrator = $selectedChapter->narrator;
+
+        if( $thisBook->id == 1){
+            $selectedChapterName = $selectedChapter->display_name;
+        } else {
+            $selectedChapterName = 'Capitolo ' . $selectedChapter->number;
+        }
 		
 		$books = Book::all();
 		
-        return view('chapter', compact('thisBook', 'selectedChapter', 'books', 'chapterMedia', 'narrator'));
+        return view('chapter', compact('thisBook', 'selectedChapter', 'books', 'chapterMedia', 'narrator', 'selectedChapterName'));
     }
 
     /**

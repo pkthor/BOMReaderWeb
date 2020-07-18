@@ -1,5 +1,9 @@
 @extends('layouts.mvp')
 
+@section('title-info')
+{{ $selectedChapter->display_name}} read by {{ $narrator->name }}
+@endsection
+
 @section('content')
 <div class="main-content">
 	<div class="reader-info">
@@ -8,7 +12,7 @@
 	</div>
 	<p class="text-center h2 chapter-name">
 		<a href="" id="book-name">{{ $thisBook->name }}</a><br>
-		Capitolo {{ $selectedChapter->number }}
+		{{ $selectedChapterName }}
 	</p>
 	<div class="player text-center">
 		<audio>
