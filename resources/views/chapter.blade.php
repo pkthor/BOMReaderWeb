@@ -1,7 +1,7 @@
 @extends('layouts.mvp')
 
 @section('title-info')
-{{ $selectedChapter->display_name}} read by {{ $narrator->name }}
+{{ $selectedChapter->display_name}} letto da {{ $narrator->name }}
 @endsection
 
 @section('content')

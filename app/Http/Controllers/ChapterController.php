@@ -132,7 +132,12 @@ class ChapterController extends Controller
      */
     public function stream($uuid) {
         $media = Media::where('uuid', $uuid)->firstOrFail();
-        $pathToFile = storage_path('app/media/' . $media->filename);
+        if( $media->chapter->book->id != 2) {
+            $pathToFile = storage_path('app/media/' . $media->filename);
+        } else {
+            $pathToFile = storage_path('app/media_compressed/' . str_replace(".mp3", "-c.mp3", $media->filename));
+        }
+        
         return response()->file($pathToFile);
     }
 

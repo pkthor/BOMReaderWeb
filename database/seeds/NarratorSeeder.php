@@ -1748,8 +1748,8 @@ class NarratorSeeder extends Seeder
               'bookID' => 11,
               'book' => 'Helaman',
               'chapter' => 11,
-              'narrator' => 'Melissa',
-              'narratorImageName' => 'Melissa',
+              'narrator' => 'Mara Bartolucci',
+              'narratorImageName' => 'MaraBartolucci.jpg',
               'audioFileName' => 'Helaman11',
             ),
             175 => 

@@ -51,13 +51,3 @@ const app = new Vue({
 });
 
 new GreenAudioPlayerFix('.player');
-
-document.getElementById('book-name').addEventListener('click', function(e){
-   e.preventDefault();
-});
-
-document.querySelector(".menu__wrap").addEventListener("click", function(e) {
-    if (e.target.classList.contains('back__link')){
-        e.preventDefault();
-    }
-  });

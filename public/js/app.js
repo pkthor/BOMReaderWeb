@@ -20340,6 +20340,7 @@ var render = function() {
                             attrs: { href: "" },
                             on: {
                               click: function($event) {
+                                $event.preventDefault()
                                 return _vm.setSubmenu(key, $event)
                               }
                             }
@@ -20393,6 +20394,7 @@ var render = function() {
                             attrs: { href: "#" },
                             on: {
                               click: function($event) {
+                                $event.preventDefault()
                                 return _vm.goBack()
                               }
                             }
@@ -32685,14 +32687,6 @@ var app = new Vue({
   el: '#app'
 });
 new GreenAudioPlayerFix('.player');
-document.getElementById('book-name').addEventListener('click', function (e) {
-  e.preventDefault();
-});
-document.querySelector(".menu__wrap").addEventListener("click", function (e) {
-  if (e.target.classList.contains('back__link')) {
-    e.preventDefault();
-  }
-});
 
 /***/ }),
 

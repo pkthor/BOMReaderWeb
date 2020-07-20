@@ -19,9 +19,13 @@
     <link rel="apple-touch-icon" sizes="512x512" href="/img/icon512.png">
     <link rel="icon" sizes="192x192" href="/img/icon192.png">
 
-    <meta property="og:title" 
-  content="Libro di Mormon Alta Voce: @yield('title-info')" />
-  <meta property="og:description" content="Il Libro di Mormon letto dai membri italiani della Chiesa di Gesù Cristo dei Santi degli Ultimi Giorni." />
+    <meta property="og:title" content="Libro di Mormon Alta Voce" />
+    <meta property="og:description" content="Il Libro di Mormon letto dai membri italiani della Chiesa di Gesù Cristo dei Santi degli Ultimi Giorni." />
+    <meta property="og:image" content="{{ asset('img/IlLibrodiMormon.jpg') }}" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="627">
+    <meta property="og:locale" content="it_IT" />
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -29,7 +33,7 @@
     <title>Libro di Mormon Alta Voce: @yield('title-info')</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -38,7 +42,7 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

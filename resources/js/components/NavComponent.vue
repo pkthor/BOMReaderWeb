@@ -6,14 +6,14 @@
             <div class="menu__wrap">
                 <ul class="menu-list" v-bind:class="{ inactive: bookSelected }">
                     <li v-for="(book, key, index) in chapters" class="menu__item" :slug="book.slug" :key="key">
-                        <a v-if="book.count > 1" class="menu__link" v-on:click="setSubmenu(key, $event)" href="">{{book.name}} <i class="fas fa-chevron-right"></i></a>
+                        <a v-if="book.count > 1" class="menu__link" v-on:click.prevent="setSubmenu(key, $event)" href="">{{book.name}} <i class="fas fa-chevron-right"></i></a>
                         <a v-else class="menu__link" :href="'/' + book.slug + '/1'">{{book.name}} <i class="fas fa-chevron-right"></i></a>
                     </li>
                 </ul>
                 <!-- Chapter Submenus -->
                 <ul v-for="(chapter, key) in chapters" class="menu__level" :key="key" v-bind:class="{ active: submenu == key  }">
                     <div v-bind:class="{ 'number-chapters': hasNumber(chapter.chapters[0].display_name) }">
-                        <li class="back__item"><a class="back__link" href="#" v-on:click="goBack()"> <i class="fas fa-chevron-left back"></i>&nbsp;Libri</a>
+                        <li class="back__item"><a class="back__link" href="#" v-on:click.prevent="goBack()"> <i class="fas fa-chevron-left back"></i>&nbsp;Libri</a>
                         <li v-for="name, key in chapter.chapters" class="menu__item">
                             <a v-if="!hasNumber(name.display_name)" class="menu__link" :href="'/' + chapter.slug + '/' + name.slug">{{ name.display_name }}</a>
                             <a v-else class="menu__link" :href="'/' + chapter.slug + '/' + (key + 1)">{{ (key + 1) }}</a>
